@@ -2,21 +2,25 @@
 # Input Data
 #################################################################
 ar = list(map(int, input().split()))
-s = int(input())
+x = int(input())
 n = len(ar)
+sum_ = sum(ar)
+s = int((sum_ - x)/2)
 
 #################################################################
-# Recursive method
+# Recursive Method
 #################################################################
-def count_subset(ar, s, n):
+def subset_given_diff(ar, n, s):
     if s == 0:
         return True
+
     elif n == 0 and s != 0:
         return False
-    else:
-        if s >= ar[n-1]:
-            return count_subset(ar, s-ar[n-1], n-1) + count_subset(ar, s, n-1)
-        elif s < ar[n-1]:
-            return count_subset(ar, s, n-1)
+    
+    if s >= 0:
+        return subset_given_diff(ar, n-1, s-ar[n-1]) + subset_given_diff(ar, n-1, s)
+    
+    elif s < 0:
+        return subset_given_diff(ar, n-1, s)
 
-print(count_subset(ar, s, n))
+print(subset_given_diff(ar, n, s))
