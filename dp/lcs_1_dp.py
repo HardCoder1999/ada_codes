@@ -18,5 +18,5 @@ for i in range(1, n+1):
             result = max(result, t[i][j])
         else:
             t[i][j] = 0
-
+            
 print(result)

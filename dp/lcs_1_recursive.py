@@ -17,6 +17,6 @@ def lcs(a, b, n, m, max_val):
         return lcs(a, b, n-1, m-1, max_val+1)
 
     else:
-        return max(max_val, lcs(a, b, n-1, m, max_val), lcs(a, b, n, m-1, max_val))
+        return max(max_val, lcs(a, b, n-1, m, 0), lcs(a, b, n, m-1, 0))
 
 print(lcs(a, b, n, m, 0))
