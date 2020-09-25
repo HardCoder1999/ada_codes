@@ -5,18 +5,17 @@ a = input()
 b = input()
 n = len(a)
 m = len(b)
-result = 0
+
 #################################################################
 # Dynamic Programming Method
 #################################################################
-t = [[0 for j in range(m+1)] for i in range(n+1)]
+t = [['' for j in range(m+1)] for i in range(n+1)]
 
 for i in range(1, n+1):
     for j in range(1, m+1):
         if a[i-1] == b[j-1]:
-            t[i][j] = 1 + t[i-1][j-1]
-            result = max(result, t[i][j])
+            t[i][j] = a[i-1] + t[i-1][j-1]
         else:
-            t[i][j] = 0
-            
-print(result)
+            t[i][j] = max(t[i-1][j], t[i][j-1])
+
+print(t[n][m])
